@@ -50,4 +50,8 @@ export class AuthService {
     res.cookie('token', token, { httpOnly: true });
     return token;
   }
+  removeTokenFromResponse(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('token');
+    return { message: 'Logged out successfully' };
+  }
 }

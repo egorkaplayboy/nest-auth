@@ -40,4 +40,9 @@ export class AuthController {
   async getUser(@Req() req: Request) {
     return await this.authService.getUser(req);
   }
+  @ApiOperation({ summary: 'Выход из аккаунта' })
+  @Post('logout')
+  logout(@Res({ passthrough: true }) res: Response) {
+    return this.authService.removeTokenFromResponse(res);
+  }
 }
